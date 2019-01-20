@@ -6,7 +6,7 @@ namespace Semaphoro\Handlers;
 interface HandlerInterface
 {
     /**
-     * @return null|string
+     * @return boolean|string
      */
     public function getProcessOpened(): ?string;
 
@@ -17,13 +17,11 @@ interface HandlerInterface
 
     /**
      * @param string $rangeKey
-     * @return bool
      */
-    public function setUnprocessedStatus(string $rangeKey): bool;
+    public function setUnprocessedStatus(string $rangeKey): void;
 
     /**
      * @param string $rangeKey
-     * @return bool
      */
-    public function remove(string $rangeKey): bool;
+    public function remove(string $rangeKey): void;
 }

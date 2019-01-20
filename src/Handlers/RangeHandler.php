@@ -3,6 +3,7 @@
 namespace Semaphoro\Handlers;
 
 
+use Semaphoro\Exception\SemaphoroException;
 use Semaphoro\Storages\StorageInterface;
 
 class RangeHandler implements HandlerInterface
@@ -38,7 +39,7 @@ class RangeHandler implements HandlerInterface
     }
 
     /**
-     * @return null|string
+     * @return boolean|string
      */
     public function getProcessOpened(): ?string
     {
@@ -70,8 +71,9 @@ class RangeHandler implements HandlerInterface
 
     /**
      * @return string
+     * @throws SemaphoroException
      */
-    public function createProcessKey() :string
+    public function createProcessKey(): string
     {
         $lastExecutedNumber = $this->getLastExecutedNumber();
 
@@ -81,16 +83,15 @@ class RangeHandler implements HandlerInterface
     }
 
     /**
-     * @throws \RuntimeException if the last executed number is null
-     *
      * @return int
+     * @throws SemaphoroException when doesn't have a last executed number
      */
     private function getLastExecutedNumber(): int
     {
         $lastExecutedNumber = $this->storage->getValue(self::LAST_EXECUTED_NUMBER_KEY);
 
         if (null === $lastExecutedNumber) {
-            throw new \RuntimeException('Last executed number is required');
+            throw new SemaphoroException('Last executed number is required');
         }
 
         return $lastExecutedNumber;
@@ -98,11 +99,10 @@ class RangeHandler implements HandlerInterface
 
     /**
      * @param int $number
-     * @return bool|mixed
      */
-    private function setLastExecutedNumber(int $number)
+    private function setLastExecutedNumber(int $number): void
     {
-        return $this->storage->save(self::LAST_EXECUTED_NUMBER_KEY, $number);
+        $this->storage->save(self::LAST_EXECUTED_NUMBER_KEY, $number);
     }
 
     /**
@@ -118,39 +118,37 @@ class RangeHandler implements HandlerInterface
      * @param int $number
      * @return int
      */
-    private function calculateLastRangeNumber(int $number)
+    private function calculateLastRangeNumber(int $number): int
     {
         return $number + $this->rangeLength;
     }
 
     /**
-     * @param int $lastNfseExecutedNumber
+     * @param int $lastExecutedNumber
      * @return string
      */
-    private function createRangeKey(int $lastNfseExecutedNumber)
+    private function createRangeKey(int $lastExecutedNumber): string
     {
         return sprintf(
             '%s_%s',
-            $this->calculateFirstRangeNumber($lastNfseExecutedNumber),
-            $this->calculateLastRangeNumber($lastNfseExecutedNumber)
+            $this->calculateFirstRangeNumber($lastExecutedNumber),
+            $this->calculateLastRangeNumber($lastExecutedNumber)
         );
     }
 
     /**
      * @param string $rangeKey
-     * @return bool
      */
-    public function setUnprocessedStatus(string $rangeKey): bool
+    public function setUnprocessedStatus(string $rangeKey): void
     {
-        return $this->storage->save($rangeKey, self::STATUS_UNPROCESSED);
+        $this->storage->save($rangeKey, self::STATUS_UNPROCESSED);
     }
 
     /**
      * @param string $rangeKey
-     * @return bool
      */
-    public function remove(string $rangeKey): bool
+    public function remove(string $rangeKey): void
     {
-        return $this->storage->remove($rangeKey);
+        $this->storage->remove($rangeKey);
     }
 }
