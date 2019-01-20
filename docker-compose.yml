@@ -1,10 +1,18 @@
 version: '2'
 services:
-  webserver:
+  php:
     image: phpstorm/php-71-apache-xdebug-26
+    container_name: semaphoro-php
     ports:
       - "80:80"
     volumes:
       - ./:/var/www/html
     environment:
       XDEBUG_CONFIG: remote_host=host.docker.internal
+    links:
+      - redis
+  redis:
+    image: redis:latest
+    container_name: semaphoro-redis
+    ports:
+      - "6379:6379"
