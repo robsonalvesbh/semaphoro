@@ -48,19 +48,17 @@ class Semaphore
 
     /**
      * @param ProcessInterface $process
-     * @return bool
      */
-    public function setUnprocessed(ProcessInterface $process): bool
+    public function setUnprocessed(ProcessInterface $process): void
     {
-        return $this->handler->setUnprocessedStatus($this->processFactory->getProcessKey($process));
+        $this->handler->setUnprocessedStatus($this->processFactory->getProcessKey($process));
     }
 
     /**
      * @param ProcessInterface $process
-     * @return bool
      */
-    public function remove(ProcessInterface $process): bool
+    public function remove(ProcessInterface $process): void
     {
-        return $this->handler->remove($this->processFactory->getProcessKey($process));
+        $this->handler->remove($this->processFactory->getProcessKey($process));
     }
 }

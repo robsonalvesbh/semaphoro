@@ -1,15 +1,14 @@
 <?php
 
-namespace Semaphoro\Storages\Redis;
+namespace Semaphoro\Storages;
 
 
 use Predis\Client;
-use Semaphoro\Storages\StorageInterface;
 
 class Redis implements StorageInterface
 {
     /**
-     * @var \Predis\Client|\Redis
+     * @var \Predis\Client
      */
     private $redisClient;
 
@@ -21,7 +20,7 @@ class Redis implements StorageInterface
     /**
      * Redis constructor.
      *
-     * @param \Predis\Client|\Redis $redis The redis instance
+     * @param \Predis\Client $redis The redis instance
      * @param string $prefix
      */
     public function __construct($redis, string $prefix = 'semaphoro')
@@ -49,9 +48,9 @@ class Redis implements StorageInterface
 
     /**
      * @param string $key
-     * @return bool|string
+     * @return string
      */
-    public function getValue(string $key)
+    public function getValue(string $key): string
     {
         return $this->redisClient->get($this->addPrefix($key));
     }
@@ -59,11 +58,11 @@ class Redis implements StorageInterface
     /**
      * @param string $key
      * @param int $value
-     * @return bool|mixed
+     * @return bool
      */
     public function save(string $key, int $value): bool
     {
-        return $this->redisClient->set(
+        return (bool)$this->redisClient->set(
             $this->addPrefix($key),
             $value
         );
@@ -75,7 +74,7 @@ class Redis implements StorageInterface
      */
     public function remove(string $key): bool
     {
-        return $this->redisClient->del([$this->addPrefix($key)]);
+        return (bool)$this->redisClient->del([$this->addPrefix($key)]);
     }
 
 
