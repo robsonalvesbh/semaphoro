@@ -1,2 +1,5 @@
 .idea/
 vendor/
+composer.phar
+composer-setup.php
+composer.lock
