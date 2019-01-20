@@ -1,0 +1,22 @@
+{
+  "name": "semephoro/semephoro",
+  "description": "Run multiples process with php",
+  "type": "library",
+  "require-dev": {
+    "predis/predis": "^1.1",
+    "phpunit/phpunit": "^7.5"
+  },
+  "authors": [
+    {
+      "name": "Robson Alves",
+      "email": "robsonalves.dev@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Semaphoro\\": "src/"
+    }
+  }
+}
