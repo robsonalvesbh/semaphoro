@@ -1,5 +1,5 @@
 {
-  "name": "semephoro/semephoro",
+  "name": "semephoro/semephore",
   "description": "Run multiples process with php",
   "type": "library",
   "require-dev": {
