@@ -5,7 +5,7 @@ namespace Semaphoro;
 
 use Semaphoro\Handlers\HandlerInterface;
 
-class Semaphore
+class Semaphoro
 {
     const RANGE_OPEN = 0;
     const RANGE_IS_REPROCESS = true;

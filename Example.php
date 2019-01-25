@@ -3,7 +3,7 @@ require_once 'vendor/autoload.php';
 
 use Predis\Client;
 use Semaphoro\Handlers\RangeHandler;
-use Semaphoro\Semaphore;
+use Semaphoro\Semaphoro;
 use Semaphoro\Storages\Redis;
 
 $redis = new Redis(new Client([
@@ -12,7 +12,7 @@ $redis = new Redis(new Client([
     'port' => 6379,
 ]));
 $rangeHandler = new RangeHandler($redis);
-$semaphoro = new Semaphore($rangeHandler);
+$semaphoro = new Semaphoro($rangeHandler);
 $process = $semaphoro->getProcessAvailable();
 
 try {
