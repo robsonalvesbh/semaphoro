@@ -124,10 +124,10 @@ class RangeHandler implements HandlerInterface
     }
 
     /**
-     * @param int $lastExecutedNumber
+     * @param string $lastExecutedNumber
      * @return string
      */
-    private function createRangeKey(int $lastExecutedNumber): string
+    private function createRangeKey(string $lastExecutedNumber): string
     {
         return sprintf(
             '%s_%s',
