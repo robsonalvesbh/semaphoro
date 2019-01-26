@@ -29,16 +29,14 @@ class RedisTest extends BaseTest
 
     /**
      * check if throw an exception when the Storage isn't instance of Predis\Client
+     *
+     * @expectedException \Throwable
      */
     public function testConstruct()
     {
-        try {
-            $processMock = $this->createMock(Process::class);
+        $processMock = $this->createMock(Process::class);
 
-            $this->redisStorage = new Redis($processMock);
-        } catch (\Throwable $e) {
-          $this->assertInstanceOf(SemaphoroException::class, $e);
-        }
+        $this->redisStorage = new Redis($processMock);
     }
 
     /**

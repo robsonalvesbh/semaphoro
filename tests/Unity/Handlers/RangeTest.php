@@ -3,6 +3,7 @@
 namespace SemaphoroTests\Unity\Handlers;
 
 
+use PHPUnit\Framework\Exception;
 use Semaphoro\Exception\SemaphoroException;
 use Semaphoro\Handlers\HandlerInterface;
 use Semaphoro\Handlers\RangeHandler;
@@ -93,6 +94,7 @@ class RangeTest extends BaseTest
     public function testCreateProcessKeyWithoutLastId()
     {
         try {
+            $this->storageMock->method('getValue')->will($this->throwException(new Exception()));
             $this->rangeHandler->createProcessKey();
         } catch (\Throwable $e) {
             $this->assertInstanceOf(SemaphoroException::class, $e);
