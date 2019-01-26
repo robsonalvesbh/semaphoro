@@ -35,7 +35,7 @@ class Semaphoro
     /**
      * @return ProcessInterface
      */
-    public function getProcessAvailable(): ProcessInterface
+    public function getAvailableProcess(): ProcessInterface
     {
         if ($openProcessKey = $this->handler->getProcessOpened()) {
             return $this->processFactory->createFromKey($openProcessKey, self::RANGE_IS_REPROCESS);

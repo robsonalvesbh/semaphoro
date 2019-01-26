@@ -4,6 +4,7 @@ namespace Semaphoro\Storages;
 
 
 use Predis\Client;
+use Semaphoro\Exception\SemaphoroException;
 
 class Redis implements StorageInterface
 {
@@ -22,11 +23,12 @@ class Redis implements StorageInterface
      *
      * @param \Predis\Client $redis The redis instance
      * @param string $prefix
+     * @throws SemaphoroException
      */
     public function __construct($redis, string $prefix = 'semaphoro')
     {
         if (!($redis instanceof Client)) {
-            throw new \InvalidArgumentException('Predis\Client instance required');
+            throw new SemaphoroException('Predis\Client instance required');
         }
 
         $this->redisClient = $redis;

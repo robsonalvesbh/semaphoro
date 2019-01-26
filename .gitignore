@@ -3,3 +3,5 @@ vendor/
 composer.phar
 composer-setup.php
 composer.lock
+phpunit.phar
+tests/coverage/

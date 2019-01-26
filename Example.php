@@ -13,7 +13,7 @@ $redis = new Redis(new Client([
 ]));
 $rangeHandler = new RangeHandler($redis);
 $semaphoro = new Semaphoro($rangeHandler);
-$process = $semaphoro->getProcessAvailable();
+$process = $semaphoro->getAvailableProcess();
 
 try {
     /**

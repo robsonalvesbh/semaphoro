@@ -19,8 +19,8 @@ class RangeHandler implements HandlerInterface
      * 0 = Unprocessed
      * 1 = Processing
      */
-    const STATUS_UNPROCESSED = 0;
-    const STATUS_PROCESSING = 1;
+    const STATUS_UNPROCESSED = "0";
+    const STATUS_PROCESSING = "1";
 
     /**
      * @var StorageInterface
@@ -90,7 +90,7 @@ class RangeHandler implements HandlerInterface
     {
         $lastExecutedNumber = $this->storage->getValue(self::LAST_EXECUTED_NUMBER_KEY);
 
-        if (null === $lastExecutedNumber) {
+        if (is_null($lastExecutedNumber) || empty($lastExecutedNumber)) {
             throw new SemaphoroException('Last executed number is required');
         }
 
