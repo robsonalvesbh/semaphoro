@@ -83,10 +83,10 @@ class RangeHandler implements HandlerInterface
     }
 
     /**
-     * @return int
+     * @return string
      * @throws SemaphoroException when doesn't have a last executed number
      */
-    private function getLastExecutedNumber(): int
+    private function getLastExecutedNumber(): string
     {
         $lastExecutedNumber = $this->storage->getValue(self::LAST_EXECUTED_NUMBER_KEY);
 

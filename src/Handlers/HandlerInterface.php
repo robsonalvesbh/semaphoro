@@ -6,7 +6,7 @@ namespace Semaphoro\Handlers;
 interface HandlerInterface
 {
     /**
-     * @return boolean|string
+     * @return null|string
      */
     public function getProcessOpened(): ?string;
 

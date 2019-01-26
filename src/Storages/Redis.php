@@ -59,10 +59,10 @@ class Redis implements StorageInterface
 
     /**
      * @param string $key
-     * @param int $value
+     * @param string $value
      * @return bool
      */
-    public function save(string $key, int $value): bool
+    public function save(string $key, string $value): bool
     {
         return (bool)$this->redisClient->set(
             $this->addPrefix($key),
