@@ -115,3 +115,10 @@ try {
     $semaphoro->setUnprocessed($process);
 }
 ```
+
+
+### Credits 
+
+* Robson Alves - [github](https://github.com/robsonalvesbh)
+* Gustavo Andrade - [github](https://github.com/jojovem)
+
