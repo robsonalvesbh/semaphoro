@@ -1,19 +1,23 @@
 {
-  "name": "robsonalvesbh/Semaphoro",
-  "description": "Run multiples process with php",
+  "name": "robsonalvesbh/semaphoro",
+  "description": "This library will help you to run multiple process with PHP.",
   "type": "library",
-  "require-dev": {
-    "predis/predis": "^1.1",
-    "phpunit/phpunit": "^7.5",
-    "m6web/redis-mock": "~2.0"
-  },
+  "keywords": [
+    "semaphore",
+    "parallelism",
+    "php"
+  ],
+  "homepage": "https://github.com/robsonalvesbh/semaphoro",
   "authors": [
     {
       "name": "Robson Alves",
       "email": "robsonalves.dev@gmail.com"
     }
   ],
-  "require": {
+  "require-dev": {
+    "predis/predis": "^1.1",
+    "phpunit/phpunit": "^7.5",
+    "m6web/redis-mock": "~2.0"
   },
   "autoload": {
     "psr-4": {
